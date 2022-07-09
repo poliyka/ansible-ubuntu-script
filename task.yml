@@ -1,47 +1,274 @@
-- hosts: ubuntu
+- name: Install dependent library
+  hosts: ubuntu
   tasks:
-    - name: install dependent library
+    - name: "[In] python3-venv"
       become: yes
       apt:
-        name:
-          - python3-venv
-          - python3-wheel
-          - libxslt-dev
-          - libzip-dev
-          - libldap2-dev
-          - libsasl2-dev
-          - python3-setuptools
-          - node-less
-          - libjpeg-dev
-          - gdebi
-          - python3-virtualenv
-          - git
-          - python3
-          - python3-pip
-          - build-essential
-          - wget
-          - make
-          - vim
-          - python3-dev
-          - libssl-dev
-          - zlib1g-dev
-          - libbz2-dev
-          - libreadline-dev
-          - libsqlite3-dev
-          - curl
-          - llvm
-          - libncurses5-dev
-          - libncursesw5-dev
-          - xz-utils
-          - tk-dev
-          - libffi-dev
-          - liblzma-dev
-          - python-openssl
-          - libxml2-dev
-          - libxslt1-dev
-          - libjpeg62-dev
-          - vim-gtk3
-          - pipenv
-          - silversearcher-ag
-        state: latest
-        autoclean: yes
+        name: python3-venv
+        update_cache: yes
+        state: present
+    - name: "[In] python3-wheel"
+      become: yes
+      apt:
+        name: python3-wheel
+        update_cache: yes
+        state: present
+
+    - name: "[In] libxslt-dev"
+      become: yes
+      apt:
+        name: libxslt-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libxslt-dev"
+      become: yes
+      apt:
+        name: libxslt-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libldap2-dev"
+      become: yes
+      apt:
+        name: libldap2-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libsasl2-dev"
+      become: yes
+      apt:
+        name: libsasl2-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] python3-setuptools"
+      become: yes
+      apt:
+        name: python3-setuptools
+        update_cache: yes
+        state: present
+
+    - name: "[In] node-less"
+      become: yes
+      apt:
+        name: node-less
+        update_cache: yes
+        state: present
+
+    - name: "[In] libjpeg-dev"
+      become: yes
+      apt:
+        name: libjpeg-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] gdebi"
+      become: yes
+      apt:
+        name: gdebi
+        update_cache: yes
+        state: present
+
+    - name: "[In] python3-virtualenv"
+      become: yes
+      apt:
+        name: python3-virtualenv
+        update_cache: yes
+        state: present
+
+    - name: "[In] git"
+      become: yes
+      apt:
+        name: git
+        update_cache: yes
+        state: present
+
+    - name: "[In] python3"
+      become: yes
+      apt:
+        name: python3
+        update_cache: yes
+        state: present
+
+    - name: "[In] python3-pip"
+      become: yes
+      apt:
+        name: python3-pip
+        update_cache: yes
+        state: present
+
+    - name: "[In] build-essential"
+      become: yes
+      apt:
+        name: build-essential
+        update_cache: yes
+        state: present
+
+    - name: "[In] wget"
+      become: yes
+      apt:
+        name: wget
+        update_cache: yes
+        state: present
+
+    - name: "[In] make"
+      become: yes
+      apt:
+        name: make
+        update_cache: yes
+        state: present
+
+    - name: "[In] vim"
+      become: yes
+      apt:
+        name: vim
+        update_cache: yes
+        state: present
+
+    - name: "[In] python3-dev"
+      become: yes
+      apt:
+        name: python3-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libssl-dev"
+      become: yes
+      apt:
+        name: libssl-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] zlib1g-dev"
+      become: yes
+      apt:
+        name: zlib1g-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libbz2-dev"
+      become: yes
+      apt:
+        name: libbz2-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libreadline-dev"
+      become: yes
+      apt:
+        name: libreadline-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libsqlite3-dev"
+      become: yes
+      apt:
+        name: libsqlite3-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] curl"
+      become: yes
+      apt:
+        name: curl
+        update_cache: yes
+        state: present
+
+    - name: "[In] llvm"
+      become: yes
+      apt:
+        name: llvm
+        update_cache: yes
+        state: present
+
+    - name: "[In] libncurses5-dev"
+      become: yes
+      apt:
+        name: libncurses5-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libncursesw5-dev"
+      become: yes
+      apt:
+        name: libncursesw5-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] xz-utils"
+      become: yes
+      apt:
+        name: xz-utils
+        update_cache: yes
+        state: present
+
+    - name: "[In] tk-dev"
+      become: yes
+      apt:
+        name: tk-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libffi-dev"
+      become: yes
+      apt:
+        name: libffi-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] liblzma-dev"
+      become: yes
+      apt:
+        name: liblzma-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] python-openssl"
+      become: yes
+      apt:
+        name: python-openssl
+        update_cache: yes
+        state: present
+
+    - name: "[In] libxml2-dev"
+      become: yes
+      apt:
+        name: libxml2-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libxslt1-dev"
+      become: yes
+      apt:
+        name: libxslt1-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] libjpeg62-dev"
+      become: yes
+      apt:
+        name: libjpeg62-dev
+        update_cache: yes
+        state: present
+
+    - name: "[In] vim-gtk3"
+      become: yes
+      apt:
+        name: vim-gtk3
+        update_cache: yes
+        state: present
+
+    - name: "[In] pipenv"
+      become: yes
+      apt:
+        name: pipenv
+        update_cache: yes
+        state: present
+
+    - name: "[In] silversearcher-ag"
+      become: yes
+      apt:
+        name: silversearcher-ag
+        update_cache: yes
+        state: present
