@@ -1,12 +1,13 @@
 - name: Install Ranger
   when: INSTALL_RANGER | bool
   changed_when: false
+  become: true
   shell:
     cmd: |
-      $(git clone https://github.com/ranger/ranger.git {{ OE_HOME }}/ranger)
-      $(cd {{ OE_HOME }}/ranger; make install)
-      $(ranger --copy-config=all)
-      $(rm -rf {{ OE_HOME }}/ranger)
+      git clone https://github.com/ranger/ranger.git {{ OE_HOME }}/ranger
+      cd {{ OE_HOME }}/ranger; make install
+      ranger --copy-config=all
+      rm -rf {{ OE_HOME }}/ranger
   args:
     executable: /bin/bash
     warn: true
