@@ -35,10 +35,10 @@ CONFIG_GIT_ALIAS=true
 ## Usage
 
 ```h
-sudo ./install.sh
+./run.sh
 ```
 
-安裝完成後
+安裝完成後重開終端機或輸入下方指令
 
 ```h
 source ~/.bashrc
