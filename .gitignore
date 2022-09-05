@@ -32,4 +32,4 @@ tags
 *.vsix
 
 # Log
-log/*
+log/*.log
