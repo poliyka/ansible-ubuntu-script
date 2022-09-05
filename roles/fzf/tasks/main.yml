@@ -1,6 +1,6 @@
 - name: Clone fzf
   when: INSTALL_FZF | bool
-  ansible.builtin.git:
+  git:
     repo: https://github.com/junegunn/fzf.git
     dest: "{{ OE_HOME }}/.fzf"
     depth: 1
@@ -8,6 +8,6 @@
 
 - name: Install FZF
   when: INSTALL_FZF | bool
-  ansible.builtin.script: "{{ OE_HOME }}/.fzf/install"
+  script: "{{ OE_HOME }}/.fzf/install"
   args:
     executable: /bin/bash

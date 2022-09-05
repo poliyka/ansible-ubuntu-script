@@ -1,6 +1,6 @@
 - name: Insert Git [Alias] Block
   when: CONFIG_GIT_ALIAS | bool
-  ansible.builtin.shell:
+  shell:
     cmd: |
       GITCONFIG_PATH={{ OE_HOME }}/.gitconfig
       if [[ ! -f "$GITCONFIG_PATH" ]];
@@ -17,12 +17,12 @@
 
 - name: Run Python Script Insert Git Alias Config
   when: CONFIG_GIT_ALIAS | bool
-  ansible.builtin.script: ./roles/git/files/git_config.py
+  script: ./roles/git/files/git_config.py
   args:
     executable: python3
   register: python_result
 
 - name: Python Script Stdout
   when: CONFIG_GIT_ALIAS | bool
-  ansible.builtin.debug:
+  debug:
     msg: "'{{ python_result.stdout }}'"

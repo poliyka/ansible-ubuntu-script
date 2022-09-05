@@ -1,10 +1,10 @@
 - name: Install github3.py python package
-  ansible.builtin.pip:
+  pip:
     name: github3.py
 
 - name: Get nvm latest tag
   when: INSTALL_NVM | bool
-  community.general.github_release:
+  github_release:
     user: nvm-sh
     repo: nvm
     action: latest_release
@@ -12,13 +12,13 @@
 
 - name: Clone nvm
   when: INSTALL_NVM | bool
-  ansible.builtin.git:
+  git:
     repo: https://github.com/nvm-sh/nvm.git
     dest: "{{ OE_HOME }}/.nvm"
     version: "{{ nvm_latest['tag'] }}"
 
 - name: Install nvm
   when: INSTALL_NVM | bool
-  ansible.builtin.script: "{{ OE_HOME }}/.nvm/install.sh"
+  script: "{{ OE_HOME }}/.nvm/install.sh"
   args:
     executable: /bin/bash

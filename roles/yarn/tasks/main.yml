@@ -1,33 +1,33 @@
 - name: Remove Old Yarn
   when: INSTALL_YARN | bool
   become: true
-  ansible.builtin.apt:
+  apt:
     name: yarn
     state: absent
 
 - name: Ensure apt-transport-https is installed
   when: INSTALL_YARN | bool
   become: true
-  ansible.builtin.apt:
+  apt:
     name: apt-transport-https
     state: present
 
 - name: Add Yarn apt key
   when: INSTALL_YARN | bool
   become: true
-  ansible.builtin.apt_key:
+  apt_key:
     url: https://dl.yarnpkg.com/debian/pubkey.gpg
 
 - name: Add Yarn repository
   when: INSTALL_YARN | bool
   become: true
-  ansible.builtin.apt_repository:
+  apt_repository:
     repo: "deb https://dl.yarnpkg.com/debian/ stable main"
     filename: yarn
 
 - name: Install Yarn
   when: INSTALL_YARN | bool
   become: true
-  ansible.builtin.apt:
+  apt:
     name: yarn
     state: present

@@ -1,6 +1,6 @@
 - name: Clone ranger
   when: INSTALL_RANGER | bool
-  ansible.builtin.git:
+  git:
     repo: https://github.com/ranger/ranger.git
     dest: /tmp/ranger
     version: master
@@ -8,6 +8,6 @@
 - name: Install ranger
   when: INSTALL_RANGER | bool
   become: true
-  ansible.builtin.make:
+  make:
     chdir: /tmp/ranger
     target: install
