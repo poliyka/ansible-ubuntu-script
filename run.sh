@@ -14,5 +14,8 @@ sudo apt update
 sudo apt-get install ansible -y
 fi
 
+# 安裝第三方模組
+ansible-galaxy collection install community.general
+
 # 執行 Ansible
 ansible-playbook -i inventory playbook.yml --extra-vars "ansible_become_pass=${OE_PASSWORD}"

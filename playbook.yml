@@ -1,14 +1,13 @@
 - name: Ubuntu20.04 AutoSetup Script
   hosts: ubuntu
   roles:
-    - role: apt
+    # - role: apt
     - role: ranger
-    - role: nvm
-    - role: yarn
-    - role: fzf
-    - role: pyenv
-    - role: bash
-    - role: git
-    - role: lsd
+    # - role: nvm
+    # - role: yarn
+    # - role: fzf
+    # - role: pyenv
+    # - role: bash
+    # - role: lsd
   vars_files:
     - ./vars/env_vars.yml

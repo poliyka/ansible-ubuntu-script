@@ -1,7 +1,7 @@
 galaxy_info:
-  role_name: pyenv
+  role_name: nvm
   author: Poliyka
-  description: Ansible role for pyenv
+  description: Ansible role for nvm
   license: MIT
   min_ansible_version: 2.13.3
 
@@ -14,7 +14,7 @@ galaxy_info:
         - all
 
   galaxy_tags:
-    - pyenv
+    - nvm
     - debian
     - ubuntu
 

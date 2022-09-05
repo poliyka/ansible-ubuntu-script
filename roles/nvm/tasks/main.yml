@@ -1,13 +1,24 @@
-- name: Install NVM
+- name: Install github3.py python package
+  ansible.builtin.pip:
+    name: github3.py
+
+- name: Get nvm latest tag
   when: INSTALL_NVM | bool
-  changed_when: false
-  shell:
-    cmd: |
-      export NVM_DIR="$HOME/.nvm" && (
-        git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-        cd "$NVM_DIR"
-        git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-      ) && \. "$NVM_DIR/install.sh"
+  community.general.github_release:
+    user: nvm-sh
+    repo: nvm
+    action: latest_release
+  register: nvm_latest
+
+- name: Clone nvm
+  when: INSTALL_NVM | bool
+  ansible.builtin.git:
+    repo: https://github.com/nvm-sh/nvm.git
+    dest: "{{ OE_HOME }}/.nvm"
+    version: "{{ nvm_latest['tag'] }}"
+
+- name: Install nvm
+  when: INSTALL_NVM | bool
+  ansible.builtin.script: "{{ OE_HOME }}/.nvm/install.sh"
   args:
     executable: /bin/bash
-    warn: true
