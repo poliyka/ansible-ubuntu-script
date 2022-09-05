@@ -1,0 +1,39 @@
+- name: Check if LSD is installed
+  when: INSTALL_LSD | bool
+  command: dpkg-query -W lsd
+  register: check_lsd_deb
+  failed_when: check_lsd_deb.rc > 1
+  changed_when: check_lsd_deb.rc == 1
+
+- name: (Check) LSD is installed
+  ansible.builtin.fail:
+    msg: "LSD is installed"
+  when: INSTALL_LSD | bool and check_lsd_deb.rc != 1
+
+- name: Check system amd or arm
+  when: INSTALL_LSD | bool
+  changed_when: false
+  shell: dpkg --print-architecture
+  args:
+    executable: /bin/bash
+    warn: true
+  register: system_structure
+
+- name: (Check) System structure not in arm or amd
+  ansible.builtin.fail:
+    msg: "{{ system_structure.stdout }} is not linux system structure"
+  when: system_structure.stdout not in ["arm64", "amd64"]
+
+- name: Download lsd.deb
+  when: INSTALL_LSD | bool
+  ansible.builtin.get_url:
+    url: "https://github.com/Peltoche/lsd/releases/download/0.22.0/lsd_0.22.0_{{ system_structure.stdout }}.deb"
+    dest: "/tmp/lsd_0.22.0_{{ system_structure.stdout }}.deb"
+    mode: 0644
+    group: "{{ OE_USER }}"
+    owner: "{{ OE_USER }}"
+
+- name: Install lsd.deb
+  when: INSTALL_LSD | bool
+  become: true
+  apt: deb="/tmp/lsd_0.22.0_{{ system_structure.stdout }}.deb"
