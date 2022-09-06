@@ -23,6 +23,7 @@
       echo 'export PYENV_ROOT="{{ OE_HOME }}/.pyenv"' >> {{ OE_HOME }}/.bashrc
       echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> {{ OE_HOME }}/.bashrc
       echo 'eval "$(pyenv init -)"' >> {{ OE_HOME }}/.bashrc
+      echo 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1' >> {{ OE_HOME }}/.bashrc
   args:
     executable: /bin/bash
 
@@ -37,6 +38,7 @@
       echo 'export PYENV_ROOT="{{ OE_HOME }}/.pyenv"' >> {{ OE_HOME }}/.profile
       echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> {{ OE_HOME }}/.profile
       echo 'eval "$(pyenv init -)"' >> {{ OE_HOME }}/.profile
+      echo 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1' >> {{ OE_HOME }}/.profile
   args:
     executable: /bin/bash
 
@@ -51,6 +53,7 @@
       echo 'export PYENV_ROOT="{{ OE_HOME }}/.pyenv"' >> {{ OE_HOME }}/.bash_profile
       echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> {{ OE_HOME }}/.bash_profile
       echo 'eval "$(pyenv init -)"' >> {{ OE_HOME }}/.bash_profile
+      echo 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1' >> {{ OE_HOME }}/.bash_profile
   args:
     executable: /bin/bash
 
@@ -65,5 +68,6 @@
       echo 'export PYENV_ROOT="{{ OE_HOME }}/.pyenv"' >> {{ OE_HOME }}/.zshrc
       echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> {{ OE_HOME }}/.zshrc
       echo 'eval "$(pyenv init -)"' >> {{ OE_HOME }}/.zshrc
+      echo 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1' >> {{ OE_HOME }}/.zshrc
   args:
     executable: /bin/bash
