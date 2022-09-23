@@ -1,0 +1,31 @@
+- name: Get Nerd Font latest tag
+  when: INSTALL_NERD_FONTS | bool
+  github_release:
+    user: ryanoasis
+    repo: nerd-fonts
+    action: latest_release
+  register: nerd_font_latest
+
+- name: Ensure SourceCodePro directory exists
+  when: INSTALL_NERD_FONTS | bool
+  become: true
+  file:
+    path: /usr/share/fonts/SourceCodePro
+    state: directory
+
+- name: Download and Unarchive nerd font source code
+  when: INSTALL_NERD_FONTS | bool
+  become: true
+  unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/{{nerd_font_latest['tag']}}/SourceCodePro.zip"
+    dest: /usr/share/fonts/SourceCodePro
+    remote_src: yes
+
+- name: Setup Nerd font 
+  when: INSTALL_NERD_FONTS | bool
+  become: true
+  shell:
+    cmd: |
+      cd /usr/share/fonts/SourceCodePro && mkfontscale && mkfontdir && fc-cache -fv
+  args:
+    executable: /bin/bash
