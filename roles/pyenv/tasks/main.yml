@@ -1,4 +1,5 @@
 - name: Download pyenv-installer
+  when: INSTALL_PYENV | bool
   get_url:
     url: https://raw.github.com/yyuu/pyenv-installer/master/bin/pyenv-installer
     dest: "/tmp/pyenv-installer.sh"
@@ -6,13 +7,27 @@
     group: "{{ OE_USER }}"
     owner: "{{ OE_USER }}"
 
-- name: Install PYENV
+- name: (Check) .pyenv exists
   when: INSTALL_PYENV | bool
+  stat:
+    path: "{{ OE_HOME }}/.pyenv"
+  register: pyenv_exists
+  
+
+- name: (Output) .pyenv exists
+  when: INSTALL_PYENV | bool and pyenv_exists.stat.exists | bool
+  debug: 
+    msg: 
+      - '.pyenv already exists, install command skip!'
+
+- name: Install PYENV
+  when: INSTALL_PYENV | bool and not pyenv_exists.stat.exists | bool
   script: /tmp/pyenv-installer.sh
   args:
     executable: /bin/bash
 
 - name: (Check) .bashrc exists
+  when: INSTALL_PYENV | bool
   stat:
     path: "{{ OE_HOME }}/.bashrc"
   register: bashrc_exists
@@ -28,6 +43,7 @@
     executable: /bin/bash
 
 - name: (Check) .profile exists
+  when: INSTALL_PYENV | bool
   stat:
     path: "{{ OE_HOME }}/.profile"
   register: profile_exists
@@ -43,6 +59,7 @@
     executable: /bin/bash
 
 - name: (Check) .bash_profile exists
+  when: INSTALL_PYENV | bool
   stat:
     path: "{{ OE_HOME }}/.bash_profile"
   register: bash_profile_exists
@@ -58,6 +75,7 @@
     executable: /bin/bash
 
 - name: (Check) .zshrc exists
+  when: INSTALL_PYENV | bool
   stat:
     path: "{{ OE_HOME }}/.zshrc"
   register: zshrc_exists
