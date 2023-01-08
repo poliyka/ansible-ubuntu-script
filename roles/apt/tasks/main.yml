@@ -13,7 +13,6 @@
     - python3-virtualenv
     - python3-dev
     - python3-pip
-    - python-openssl
     # Lib
     - libxslt-dev
     - libzip-dev
@@ -55,3 +54,10 @@
     - net-tools
     - htop
     - cargo
+    
+- name: Upgrade openssl lib
+  when: INSTALL_DEPENDENT | bool
+  become: true
+  pip: 
+    name: pyOpenSSL
+    state: forcereinstall
