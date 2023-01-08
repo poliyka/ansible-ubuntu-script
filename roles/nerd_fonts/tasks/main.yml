@@ -26,6 +26,6 @@
   become: true
   shell:
     cmd: |
-      cd /usr/share/fonts/SourceCodePro && mkfontscale && mkfontdir && fc-cache -fv
+      fc-cache -fv
   args:
     executable: /bin/bash
