@@ -54,6 +54,7 @@
     - net-tools
     - htop
     - cargo
+    - unzip
     
 - name: Upgrade openssl lib
   when: INSTALL_DEPENDENT | bool
