@@ -5,18 +5,20 @@
     dest: "{{ OE_HOME }}/.fzf"
     depth: 1
     version: master
-
-#- name: Install FZF
- # when: INSTALL_FZF | bool
-  #script: "{{ OE_HOME }}/.fzf/install"
-  #args:
-   # executable: /bin/bash
     
+- name: Install python pexpect
+  when: INSTALL_FZF | bool
+  become: true
+  apt:
+    name:
+      python-pexpect
+
 - name: Install FZF
   when: INSTALL_FZF | bool
   expect:
     command: "{{ OE_HOME }}/.fzf/install"
     responses:
-      'First Question in the prompt' : 'y'
-      'Second Question in the prompt' : 'y'
-      'Thired Question in the prompt' : 'y'
+      'Do you want to enable fuzzy auto-completion\? \(\[y\]\/n\) ': 'y'
+      'Do you want to enable key bindings\? \(\[y\]\/n\) ': 'y'
+      'Do you want to update your shell configuration files\? \(\[y\]\/n\) ': 'y'
+    echo: yes
