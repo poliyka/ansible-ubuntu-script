@@ -6,8 +6,17 @@
     depth: 1
     version: master
 
+#- name: Install FZF
+ # when: INSTALL_FZF | bool
+  #script: "{{ OE_HOME }}/.fzf/install"
+  #args:
+   # executable: /bin/bash
+    
 - name: Install FZF
   when: INSTALL_FZF | bool
-  script: "{{ OE_HOME }}/.fzf/install"
-  args:
-    executable: /bin/bash
+  expect:
+    command: "{{ OE_HOME }}/.fzf/install"
+    responses:
+      'First Question in the prompt' : 'y'
+      'Second Question in the prompt' : 'y'
+      'Thired Question in the prompt' : 'y'
