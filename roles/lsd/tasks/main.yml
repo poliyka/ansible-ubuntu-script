@@ -24,3 +24,19 @@
   when: INSTALL_LSD | bool
   become: true
   apt: deb="/tmp/lsd_0.22.0_{{ system_structure.stdout }}.deb"
+  
+- name: Insert lsd [Alias] Block
+  when: INSTALL_LSD | bool
+  shell:
+    cmd: |
+      BASH_PATH={{ OE_HOME }}/.bashrc
+      cat << EOF > $BASH_PATH
+      # [lsd]
+      alias ls='lsd'
+      alias l='ls -l'
+      alias la='ls -a'
+      alias lla='ls -la'
+      alias lt='ls --tree'
+      EOF
+  args:
+    executable: /bin/bash
