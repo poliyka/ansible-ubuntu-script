@@ -30,7 +30,7 @@
   shell:
     cmd: |
       BASH_PATH={{ OE_HOME }}/.bashrc
-      cat << EOF > $BASH_PATH
+      cat << EOF >> $BASH_PATH
       # [lsd]
       alias ls='lsd'
       alias l='ls -l'
