@@ -10,8 +10,7 @@ set +o allexport
 # 確定 Ansible 指令是否存在
 if ! command -v ansible-playbook
 then
-sudo apt update
-sudo apt-get install ansible -y
+python3 -m pip install ansible
 fi
 
 # 安裝第三方模組
