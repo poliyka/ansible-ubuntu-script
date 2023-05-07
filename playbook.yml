@@ -11,4 +11,4 @@
     - role: lsd
     - role: nerd_fonts
   vars_files:
-    - ./vars/env_vars.yml
+    - ./vars/env.yaml

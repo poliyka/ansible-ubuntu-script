@@ -48,7 +48,6 @@
     - neovim
     - trash-cli
     - vim-gtk3
-    - pipenv
     - silversearcher-ag
     - exuberant-ctags
     - figlet
