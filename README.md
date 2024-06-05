@@ -1,5 +1,7 @@
 # Ubuntu 20.04 初始化腳本
 
+這個腳本停止開發，轉移到 golang 版本: [https://github.com/poliyka/ubuntuInit](https://github.com/poliyka/ubuntuInit)
+
 ## Configuration
 
 - [ansible.env](./ansible.env) 中修正使用者名稱
